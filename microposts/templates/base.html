@@ -1,0 +1,12 @@
+<html>
+<head>
+	<title> {% block title %}{% endblock title %} </title>
+</head>
+<body>
+	<a href="{% url 'microposts.views.home' %}"><h1>Microposts</h1></a>
+	{% block content %}
+	<a href="{% url 'django.contrib.auth.views.login' %}">Click here to login!</a> <br>
+	<a href="{% url 'posts.views.allposts' %}">Click here to see all posts!</a>
+	{% endblock content %}
+</body>
+</html>

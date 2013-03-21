@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+	
+	{% if form.errors %}
+		<p>Error!</p>
+	{% endif %}
+
+	<form action="{% url 'django.contrib.auth.views.login' %}" method='post'>
+		{% csrf_token %}
+		<table>
+		{{ form.as_table }}
+		</table>
+		<input type='submit' value='Login'>
+		<input type="hidden" name="next" value="{{ next }}">
+	</form>
+{% endblock content %}

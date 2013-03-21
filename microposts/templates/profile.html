@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ user.username }}'s Homepage
+{% endblock title %}
+
+{% block content %}
+	Hello {{ user.username }}!
+	<br>
+	<a href="{% url 'django.contrib.auth.views.logout' %}">Click here to logout!</a> <br>
+
+	<a href="{% url 'posts.views.add' %}">Click here to add a post!</a>
+
+	<hr>
+	<h2>Your recent posts</h2>
+	<ul>
+		{% for post in posts %}
+			<li> <p>{{ post.post }} </p></li>
+		{% endfor %}
+	</ul>
+{% endblock content %}

@@ -5,9 +5,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'microposts.views.home', name='home'),
-    # url(r'^microposts/', include('microposts.foo.urls')),
+    url(r'^$', 'microposts.views.home'),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+    url(r'^allposts/$', 'posts.views.allposts'),
+    url(r'^accounts/profile/$', 'microposts.views.profile'),
+    url(r'^addpost/$', 'posts.views.add'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
