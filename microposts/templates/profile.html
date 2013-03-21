@@ -9,7 +9,8 @@
 	<br>
 	<a href="{% url 'django.contrib.auth.views.logout' %}">Click here to logout!</a> <br>
 
-	<a href="{% url 'posts.views.add' %}">Click here to add a post!</a>
+	<a href="{% url 'posts.views.add' %}">Click here to add a post!</a> <br>
+	<a href="{% url 'posts.views.follow' %}">Click here to add a follower!</a>
 
 	<hr>
 	<h2>Your recent posts</h2>
@@ -18,4 +19,12 @@
 			<li> <p>{{ post.post }} </p></li>
 		{% endfor %}
 	</ul>
+	{% if fposts %}
+		<h2>Posts by your friends</h2>
+		<ul>
+		{% for post in fposts %}
+			<li> <p>{{ post.user }}: {{ post.post }}</p> </li>
+		{% endfor %}
+		</ul>
+	{% endif %}
 {% endblock content %}

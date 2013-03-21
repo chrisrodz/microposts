@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Add a follower!
+{% endblock title %}
+
+{% block content %}
+
+	{% if users %}
+		<h2>Select people to follow</h2>
+		<form action='' method='post'>
+			{% csrf_token %}
+			{% for user in users %}
+				<input type='checkbox' name='newguys[]' value='{{ user }}'> {{ user }} <br>
+			{% endfor %}
+			<br>
+			<input type='submit' value='Add!'>
+		</form>
+	{% else %}
+		<h2>You're following everybody!</h2>	
+	{% endif %}
+
+{% endblock content %}
