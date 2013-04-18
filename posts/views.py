@@ -22,7 +22,7 @@ def profile(request):
 	fposts = Post.objects.filter(user__in=follows)
 	return render_to_response('profile.html', {'user': request.user, 'posts': posts, 'fposts': fposts})
 
-# View for registering new users
+# View for registering users
 def register(request):
 	if request.method == 'POST':
 		form = UserCreationForm(request.POST)
@@ -45,12 +45,13 @@ def add(request):
 	else:
 		return render_to_response('addpost.html', {'user': request.user}, context_instance=RequestContext(request))
 
+#View for adding followers
 @login_required()
 def follow(request):
 	if request.method == 'POST':
-		if request.POST['newguys']:
+		if request.POST['newguys[]']:
 			current = Follower.objects.get(follower=request.user)
-			newguys = Follower.objects.filter(follower__username__in=request.POST.getlist('newguys'))
+			newguys = Follower.objects.filter(follower__username__in=request.POST.getlist('newguys[]'))
 			for guy in newguys:
 				current.following.add(guy)
 			return profile(request)

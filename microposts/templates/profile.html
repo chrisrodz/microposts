@@ -5,6 +5,9 @@
 {% endblock title %}
 
 {% block content %}
+	{% load gravatar %}
+	{% gravatar_img_for_user user 120 %}
+	<br>
 	Hello {{ user.username }}!
 	<br>
 	<a href="{% url 'django.contrib.auth.views.logout' %}">Click here to logout!</a> <br>
